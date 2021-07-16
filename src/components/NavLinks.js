@@ -1,9 +1,15 @@
 import React from 'react'
+import { Link,useLocation } from 'react-router-dom'
 
+const {pathname} =useLocation()
 const NavLink = ({ currentPage, handlePageChange, page }) => {
-  const onClick = () => handlePageChange(page);
-  const to = "/" + (page === 'Home' ? '' : page.toLowerCase());
-  const className = currentPage === page ? 'nav-link active' : 'nav-link';
+  const to =`${process.env.PUBLIC_URL}/`  + (page === 'Home' ? '' : page.toLowerCase());
+  const onClick = () =>{ 
+    handlePageChange(to);
+  }
+  console.log('CURR', currentPage)
+  console.log('PATH', pathname)
+    const className = currentPage === pathname ? 'nav-link active' : 'nav-link';
   const data = { onClick, to, className };
 
   return (
